@@ -1,7 +1,10 @@
 // Base
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
+// Lib
 import tw from 'tailwind-react-native-classnames'
+// Comp
+import NavOptions from '../components/NavOptions'
 
 const HomeScreen = () => {
 
@@ -12,6 +15,8 @@ const HomeScreen = () => {
           style={styles.image}
           source={{ uri: 'https://links.papareact.com/gzs' }}
         />
+
+        <NavOptions />
       </View>
     </View>
   )
