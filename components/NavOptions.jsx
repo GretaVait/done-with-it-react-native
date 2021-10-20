@@ -1,15 +1,18 @@
 // Base
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native'
 // Lib
 import { Icon } from 'react-native-elements'
 import tw from 'tailwind-react-native-classnames'
 // Navigation
 import { useNavigation } from '@react-navigation/core'
+// Context
+import { AppContext } from '../context/AppContext'
 
 
 const NavOptions = () => {
   const nav = useNavigation()
+  const { userData: { origin } } = useContext(AppContext)
 
   const data = [
     {
@@ -22,7 +25,7 @@ const NavOptions = () => {
       id: "456",
       title: "Order Food",
       image: "https://links.papareact.com/28w",
-      screen: "Eats"
+      screen: "Eat"
     },
   ]
 
@@ -34,8 +37,10 @@ const NavOptions = () => {
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => { nav.navigate(item.screen) }}
-          style={tw`pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
-          <View>
+          style={tw`pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+          disabled={!origin}
+        >
+          <View style={tw`${!origin && 'opacity-30'}`}>
             <Image
               style={styles.image}
               source={{ uri: item.image }}

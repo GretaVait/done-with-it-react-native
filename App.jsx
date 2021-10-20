@@ -12,6 +12,7 @@ import { AppProvider} from './context/AppContext'
 // Screens
 import HomeScreen from './screens/HomeScreen'
 import MapScreen from './screens/MapScreen'
+import EatScreen from './screens/EatScreen'
 
 export default function App() {
   const Stack = createNativeStackNavigator()
@@ -32,6 +33,10 @@ export default function App() {
               <Stack.Screen 
                 name="Map" 
                 component={MapScreen}
+              />
+              <Stack.Screen 
+                name="Eat" 
+                component={EatScreen}
               />
             </Stack.Navigator>
 
