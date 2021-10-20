@@ -4,21 +4,25 @@ import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react
 // Lib
 import { Icon } from 'react-native-elements'
 import tw from 'tailwind-react-native-classnames'
+// Navigation
+import { useNavigation } from '@react-navigation/core'
+
 
 const NavOptions = () => {
+  const nav = useNavigation()
 
   const data = [
     {
       id: "159",
       title: "Get a Ride",
       image: "https://links.papareact.com/3pn",
-      screen: "MapScreen"
+      screen: "Map"
     },
     {
       id: "456",
       title: "Order Food",
       image: "https://links.papareact.com/28w",
-      screen: "EatsScreen"
+      screen: "Eats"
     },
   ]
 
@@ -28,7 +32,9 @@ const NavOptions = () => {
       keyExtractor={(item) => item.id}
       horizontal
       renderItem={({ item }) => (
-        <TouchableOpacity style={tw`pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
+        <TouchableOpacity
+          onPress={() => { nav.navigate(item.screen) }}
+          style={tw`pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
           <View>
             <Image
               style={styles.image}
