@@ -6,8 +6,7 @@ export const AppProvider = (props) => {
 
   const [userData, setUserData] = useState({
     origin: null,
-    destination: {},
-    description: null,
+    destination: null,
     travelTime: 0
   })
 

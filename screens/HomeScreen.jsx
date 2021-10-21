@@ -40,8 +40,10 @@ const HomeScreen = () => {
           onPress={(data, details = null) => {
             saveUserData({
               ...userData,
-              origin: details.geometry.location,
-              description: data.description,
+              origin: {
+                location: details.geometry.location,
+                description: data.description
+              },
               destination: null
             })
           }}
