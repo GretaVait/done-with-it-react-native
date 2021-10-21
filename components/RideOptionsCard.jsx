@@ -35,6 +35,8 @@ const RideOptionsCard = () => {
     },
   ]
 
+  const SURGE_CHARGE_RATE = 1.5
+
   return (
     <SafeAreaView style={tw`bg-white flex-grow flex-1`}>
 
@@ -62,12 +64,16 @@ const RideOptionsCard = () => {
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
               <Text>travel time...</Text>
             </View>
-            <Text style={tw`text-xl`}>$99</Text>
+            <Text style={tw`text-xl`}>
+
+              ${((travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100).toFixed(2)}
+
+            </Text>
           </TouchableOpacity>
         )}
       />
 
-      <View>
+      <View style={tw`mt-auto border-t border-gray-200`}>
         <TouchableOpacity style={tw`bg-black py-3 m-3 ${!selected && 'bg-gray-300'}`} disabled={!selected}>
           <Text style={tw`text-center text-white text-xl`}>Choose {selected?.title}</Text>
         </TouchableOpacity>
