@@ -1,6 +1,6 @@
 // Base
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
 // Lib
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 // Navigation
@@ -17,13 +17,11 @@ import EatScreen from './screens/EatScreen'
 export default function App() {
   const Stack = createNativeStackNavigator()
 
-
   return (
     <AppProvider>
       <NavigationContainer>
         <SafeAreaProvider>
-          <View style={styles.container}>
-
+          <KeyboardAvoidingView behavior="height" style={styles.container} >
             <Stack.Navigator>
               <Stack.Screen 
                 name="Home" 
@@ -33,14 +31,14 @@ export default function App() {
               <Stack.Screen 
                 name="Map" 
                 component={MapScreen}
+                options={{ headerShown: false }} 
               />
               <Stack.Screen 
                 name="Eat" 
                 component={EatScreen}
               />
             </Stack.Navigator>
-
-          </View>
+          </KeyboardAvoidingView>
         </SafeAreaProvider>
       </NavigationContainer>
     </AppProvider>

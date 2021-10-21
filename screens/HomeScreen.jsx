@@ -6,6 +6,7 @@ import tw from 'tailwind-react-native-classnames'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 // Comp
 import NavOptions from '../components/NavOptions'
+import NavFavourites from '../components/NavFavourites'
 // Env
 import { GOOGLE_MAPS_APIKEY } from '@env'
 // Context
@@ -52,6 +53,8 @@ const HomeScreen = () => {
         />
 
         <NavOptions />
+
+        <NavFavourites />
       </View>
     </View>
   )
