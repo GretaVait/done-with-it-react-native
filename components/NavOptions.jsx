@@ -19,13 +19,15 @@ const NavOptions = () => {
       id: "159",
       title: "Get a Ride",
       image: "https://links.papareact.com/3pn",
-      screen: "Map"
+      screen: "Map",
+      comingSoon: false
     },
     {
       id: "456",
       title: "Order Food",
       image: "https://links.papareact.com/28w",
-      screen: "Eat"
+      screen: "Eat",
+      comingSoon: true
     },
   ]
 
@@ -34,18 +36,23 @@ const NavOptions = () => {
       data={data}
       keyExtractor={(item) => item.id}
       horizontal
-      renderItem={({ item }) => (
+      renderItem={({ item: { screen, image, title, comingSoon } }) => (
         <TouchableOpacity
-          onPress={() => { nav.navigate(item.screen) }}
-          style={tw`pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+          onPress={() => { !comingSoon && nav.navigate(screen) }}
+          style={tw`relative pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
           disabled={!origin}
         >
+          {comingSoon && 
+            <View style={[tw`flex justify-center items-center absolute top-0 left-0 bottom-0 right-0 bg-gray-200 z-50 bg-opacity-90`]}>
+              <Text style={tw`text-lg font-semibold text-black`}>Coming Soon!</Text>
+            </View>
+          }
           <View style={tw`${!origin && 'opacity-30'}`}>
             <Image
               style={styles.image}
-              source={{ uri: item.image }}
+              source={{ uri: image }}
             />
-            <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+            <Text style={tw`mt-2 text-lg font-semibold`}>{title}</Text>
             <Icon 
               style={tw`p-2 bg-black rounded-full w-10 mt-4`}
               name="arrowright" color="white" type="antdesign" />
