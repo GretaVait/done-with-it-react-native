@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-na
 // Lib
 import tw from 'tailwind-react-native-classnames'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { Icon } from 'react-native-elements'
 // Env
 import { GOOGLE_MAPS_APIKEY } from '@env'
 // Context
@@ -11,12 +12,11 @@ import { AppContext } from '../context/AppContext'
 // Navigation
 import { useNavigation } from '@react-navigation/core'
 import NavFavourites from './NavFavourites'
-import { Icon } from 'react-native-elements'
 
 const NavigateCard = () => { 
   const { userData, saveUserData } = useContext(AppContext)
   const nav = useNavigation()
-
+  
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       <Text style={tw`text-center py-5 text-xl`}>Good Morning, User!</Text>
@@ -66,6 +66,8 @@ const NavigateCard = () => {
           <Text style={tw`text-center`}>Eats</Text>
         </TouchableOpacity>
       </View> */}
+      
+
     </SafeAreaView>
   ) 
 }
