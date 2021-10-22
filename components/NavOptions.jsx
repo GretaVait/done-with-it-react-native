@@ -19,7 +19,7 @@ const NavOptions = () => {
       id: "159",
       title: "Get a Ride",
       image: "https://links.papareact.com/3pn",
-      screen: "Map",
+      screen: "Navigate",
       comingSoon: false
     },
     {

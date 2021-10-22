@@ -13,6 +13,7 @@ import { AppProvider} from './context/AppContext'
 import HomeScreen from './screens/HomeScreen'
 import MapScreen from './screens/MapScreen'
 import EatScreen from './screens/EatScreen'
+import NavigateScreen from './screens/NavigateScreen'
 
 export default function App() {
   const Stack = createNativeStackNavigator()
@@ -26,6 +27,11 @@ export default function App() {
               <Stack.Screen 
                 name="Home" 
                 component={HomeScreen} 
+                options={{ headerShown: false }} 
+              />
+              <Stack.Screen 
+                name="Navigate" 
+                component={NavigateScreen} 
                 options={{ headerShown: false }} 
               />
               <Stack.Screen 

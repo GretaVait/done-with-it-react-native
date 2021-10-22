@@ -16,12 +16,11 @@ const Map = () => {
 
   useEffect(() => {
     if (!origin || !destination) return;
-
     // Zoom & fit to see markers
     mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], {
       edgePadding: { top: 50, right: 50, bottom: 50, left: 50 }
     })
-  }, [origin, destination])
+  }, [mapRef.current])
 
   useEffect(() => {
     if (!origin || !destination) return

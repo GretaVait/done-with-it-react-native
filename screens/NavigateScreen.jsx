@@ -11,17 +11,42 @@ import { GOOGLE_MAPS_APIKEY } from '@env'
 import { AppContext } from '../context/AppContext'
 // Navigation
 import { useNavigation } from '@react-navigation/core'
-import NavFavourites from './NavFavourites'
+// Comp
+import NavFavourites from '../components/NavFavourites'
+import BackButton from '../components/BackButton'
 
-const NavigateCard = () => { 
-  const { userData, saveUserData } = useContext(AppContext)
+const NavigateScreen = () => { 
   const nav = useNavigation()
-  
-  return (
-    <SafeAreaView style={tw`bg-white flex-1`}>
-      <Text style={tw`text-center py-5 text-xl`}>Good Morning, User!</Text>
+  const { userData: { origin } } = useContext(AppContext)
 
-      <View style={tw`border-t border-gray-200 flex-shrink`}>
+  const data = [
+    {
+      id: "159",
+      title: "Get a Ride",
+      image: "https://links.papareact.com/3pn",
+      screen: "Navigate",
+      comingSoon: false
+    },
+    {
+      id: "456",
+      title: "Order Food",
+      image: "https://links.papareact.com/28w",
+      screen: "Eat",
+      comingSoon: true
+    },
+  ]
+
+  return (
+    <SafeAreaView style={tw`bg-white flex-1 py-5`}>
+
+      <View style={tw`flex items-start pt-4 px-4`}>
+        <TouchableOpacity onPress={() => { nav.goBack() }}>
+          <Icon name="arrowleft" color="black" type="antdesign" size={24} />
+        </TouchableOpacity>
+      </View>
+
+
+      <View style={tw`flex-shrink`}>
         <View>
           <GooglePlacesAutocomplete 
             placeholder="Where to?"
@@ -44,7 +69,7 @@ const NavigateCard = () => {
                 }
               })
 
-              nav.navigate('RideOptionsCard')
+              nav.navigate('Map')
             }}
           />
         </View>
@@ -89,4 +114,4 @@ const toInputBoxStyles = StyleSheet.create({
   }
 })
 
-export default NavigateCard
+export default NavigateScreen

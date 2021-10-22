@@ -52,7 +52,7 @@ const NavFavourites = ({ origin }) => {
                 }
               }
             })
-            nav.navigate('Map')
+            nav.navigate('Navigate')
           } else {
             saveUserData({
               ...userData,
@@ -64,7 +64,7 @@ const NavFavourites = ({ origin }) => {
                 }
               }
             })
-            nav.navigate('RideOptionsCard')
+            nav.navigate('Map')
           }
         }}>
           <Icon 
