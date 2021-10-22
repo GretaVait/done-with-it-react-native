@@ -54,7 +54,7 @@ const HomeScreen = () => {
 
         <NavOptions />
 
-        <NavFavourites />
+        <NavFavourites origin />
       </View>
     </View>
   )
