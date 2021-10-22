@@ -26,7 +26,7 @@ const Map = () => {
     if (!origin || !destination) return
 
     const getTravelTime = async () => {
-      fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&destinations=${destination.description}&origins=${origin.description}&key=${GOOGLE_MAPS_APIKEY}`)
+      fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&destinations=${destination.description}&origins=${origin.description}&key=${GOOGLE_MAPS_APIKEY}`)
       .then(res => res.json())
       .then(data => {
         saveUserData({

@@ -13,11 +13,10 @@ import { AppContext } from '../context/AppContext'
 import { useNavigation } from '@react-navigation/core'
 // Comp
 import NavFavourites from '../components/NavFavourites'
-import BackButton from '../components/BackButton'
 
 const NavigateScreen = () => { 
   const nav = useNavigation()
-  const { userData: { origin } } = useContext(AppContext)
+  const { userData, saveUserData } = useContext(AppContext)
 
   const data = [
     {

@@ -2,7 +2,6 @@
 import React, { useContext, useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image, Button } from 'react-native'
 // Lib
-import { Icon } from 'react-native-elements'
 import tw from 'tailwind-react-native-classnames'
 import BottomSheet from 'reanimated-bottom-sheet'
 // Navigation
@@ -43,11 +42,7 @@ const RideOptionsCard = () => {
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
               <Text>{travelTimeInformation?.duration?.text}</Text>
             </View>
-            <Text style={tw`text-xl`}>
-
-              ${((travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100).toFixed(2)}
-
-            </Text>
+            <Text style={tw`text-xl`}>€{((travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100).toFixed(2)}</Text>
           </TouchableOpacity>
         )}
       />
@@ -88,7 +83,7 @@ const RideOptionsCard = () => {
   return (
     <BottomSheet
       ref={sheetRef}
-      snapPoints={['70%', '6%', '6%']}
+      snapPoints={['70%', '30%', '30%']}
       initialSnap={1}
       borderRadius={10}
       renderContent={renderContent}
