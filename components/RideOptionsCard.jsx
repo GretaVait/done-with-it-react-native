@@ -4,13 +4,10 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image
 // Lib
 import tw from 'tailwind-react-native-classnames'
 import BottomSheet from 'reanimated-bottom-sheet'
-// Navigation
-import { useNavigation } from '@react-navigation/core'
 // Context
 import { AppContext } from '../context/AppContext'
 
-const RideOptionsCard = () => { 
-  const nav = useNavigation()
+const RideOptionsCard = () => {
   const [selected, setSelected] = useState(null)
   const { userData: { travelTimeInformation } } = useContext(AppContext)
 
@@ -20,7 +17,7 @@ const RideOptionsCard = () => {
       <View style={tw`flex items-center py-4`}>
         <View style={tw`h-2 w-14 bg-gray-400 rounded-full`} /> 
       </View>
-
+      
       <View>
         <Text style={tw`text-center py-5 text-xl border-b border-gray-200`}>Select a Ride {`- ${travelTimeInformation?.distance?.text}`}</Text>
       </View>
@@ -42,7 +39,10 @@ const RideOptionsCard = () => {
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
               <Text>{travelTimeInformation?.duration?.text}</Text>
             </View>
-            <Text style={tw`text-xl`}>€{((travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100).toFixed(2)}</Text>
+            {
+              travelTimeInformation &&
+                <Text style={tw`text-xl`}>€{((travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100).toFixed(2)}</Text>
+            }
           </TouchableOpacity>
         )}
       />

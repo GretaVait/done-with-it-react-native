@@ -9,6 +9,8 @@ import MapViewDirections from 'react-native-maps-directions'
 import { AppContext } from '../context/AppContext'
 // Env
 import { GOOGLE_MAPS_APIKEY } from "@env"
+// Data
+import mapStyle from '../data/mapStyles'
 
 const Map = () => { 
   const { userData: { origin, description, destination }, userData, saveUserData } = useContext(AppContext)
@@ -52,6 +54,7 @@ const Map = () => {
         longitudeDelta: 0.005
       }}
       showsCompass={false}
+      customMapStyle={mapStyle}
     >
       
       {
