@@ -1,5 +1,5 @@
 // Base
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 // Lib
 import tw from 'tailwind-react-native-classnames'
@@ -9,11 +9,9 @@ import NavOptions from '../components/NavOptions'
 import NavFavourites from '../components/NavFavourites'
 // Env
 import { GOOGLE_MAPS_APIKEY } from '@env'
-// Context
-import { AppContext } from '../context/AppContext'
 
 const HomeScreen = () => {
-  const {userData, saveUserData} = useContext(AppContext)
+  const [userOrigin, setUserOrigin] = useState({})
 
   return (
     <View style={tw`bg-white h-full`}>
@@ -39,20 +37,16 @@ const HomeScreen = () => {
           minLength={2}
           query={{ key: GOOGLE_MAPS_APIKEY, language: 'en' }}
           onPress={(data, details = null) => {
-            saveUserData({
-              ...userData,
-              origin: {
-                location: details.geometry.location,
-                description: data.description
-              },
-              destination: null
+            setUserOrigin({
+              location: details.geometry.location,
+              description: data.description
             })
           }}
           fetchDetails={true}
           returnKeyType={"search"}
         />
 
-        <NavOptions />
+        <NavOptions userOrigin={userOrigin} />
 
         <NavFavourites origin />
       </View>

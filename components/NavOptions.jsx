@@ -1,5 +1,5 @@
 // Base
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native'
 // Lib
 import { Icon } from 'react-native-elements'
@@ -10,9 +10,16 @@ import { useNavigation } from '@react-navigation/core'
 import { AppContext } from '../context/AppContext'
 
 
-const NavOptions = () => {
+const NavOptions = ({ userOrigin }) => {
   const nav = useNavigation()
-  const { userData: { origin } } = useContext(AppContext)
+  const { saveUserData, userData } = useContext(AppContext)
+  const [disabled, setDisabled] = useState(true)
+
+  useEffect(() => {
+    if (userOrigin.description) {
+      setDisabled(false)
+    }
+  }, [userOrigin])
 
   const data = [
     {
@@ -38,16 +45,23 @@ const NavOptions = () => {
       horizontal
       renderItem={({ item: { screen, image, title, comingSoon } }) => (
         <TouchableOpacity
-          onPress={() => { !comingSoon && nav.navigate(screen) }}
+          onPress={() => { 
+            !comingSoon && nav.navigate(screen)
+            saveUserData({
+              ...userData,
+              origin: userOrigin,
+              destination: null
+            })
+          }}
           style={tw`relative pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
-          disabled={!origin}
+          disabled={disabled}
         >
           {comingSoon && 
             <View style={[tw`flex justify-center items-center absolute top-0 left-0 bottom-0 right-0 bg-gray-200 z-50 bg-opacity-90`]}>
               <Text style={tw`text-lg font-semibold text-black`}>Coming Soon!</Text>
             </View>
           }
-          <View style={tw`${!origin && 'opacity-30'}`}>
+          <View style={tw`${disabled && 'opacity-30'}`}>
             <Image
               style={styles.image}
               source={{ uri: image }}
