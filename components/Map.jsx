@@ -51,6 +51,7 @@ const Map = () => {
         latitudeDelta: 0.005,
         longitudeDelta: 0.005
       }}
+      showsCompass={false}
     >
       
       {
@@ -75,7 +76,11 @@ const Map = () => {
             title="Origin"
             description={description}
             identifier="origin"
-          />
+          >
+            <View style={[tw`rounded-full`, styles.markerOuter]}>
+              <View style={[tw`rounded-full`, styles.markerInner]} />
+            </View>
+          </Marker>
       }
       {
         destination?.location &&
@@ -87,12 +92,29 @@ const Map = () => {
             title="Destination"
             description={description}
             identifier="destination"
-          />
+          >
+            <View style={styles.markerOuter}>
+              <View style={styles.markerInner} />
+            </View>
+          </Marker>
       }
     </MapView>
   ) 
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  markerOuter: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 16,
+    height: 16,
+    backgroundColor: 'black'
+  },
+  markerInner: {
+    width: 4,
+    height: 4,
+    backgroundColor: 'white'
+  }
+})
 
 export default Map
